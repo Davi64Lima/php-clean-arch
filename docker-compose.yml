@@ -1,7 +1,8 @@
+version: '3.5'
 services:
   app:
-    container_name: php-clean-architecture
-    image: dersonsena/php-nginx-dev:7.4
+    container_name: clean-arch-youtube-app
+    image: dersonsena/php-nginx-dev
     volumes:
       - ./:/var/www/html
     environment:
@@ -11,8 +12,23 @@ services:
       - '8080:80'
       - '443:443'
     networks:
-      - php-clean-architecture
+      - clean-arch-youtube-network
+
+  mysql:
+    image: mysql:5.7
+    container_name: clean-arch-youtube-db
+    command: --default-authentication-plugin=mysql_native_password --explicit_defaults_for_timestamp=1
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: clean_arch_youtube
+    networks:
+      - clean-arch-youtube-network
+    volumes:
+      - ./.docker/data:/var/lib/mysql
 
 networks:
-  php-clean-architecture:
+  clean-arch-youtube-network:
     driver: bridge
