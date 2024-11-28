@@ -1,0 +1,19 @@
+{
+    "name": "davi64lima/php-clean-architecture",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Davi Lima",
+            "email": "devdavi64lima@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

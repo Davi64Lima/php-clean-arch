@@ -1,0 +1,18 @@
+services:
+  app:
+    container_name: php-clean-architecture
+    image: dersonsena/php-nginx-dev:7.4
+    volumes:
+      - ./:/var/www/html
+    environment:
+      - XDEBUG_START_WITH_REQUEST=yes
+      - XDEBUG_DISCOVER_CLIENT_HOST=false
+    ports:
+      - '8080:80'
+      - '443:443'
+    networks:
+      - php-clean-architecture
+
+networks:
+  php-clean-architecture:
+    driver: bridge
